@@ -64,7 +64,7 @@ public class CategoryService {
     }
 
 
-    CategoryResponse mapToCategoryResponse(Category category) {
+   private CategoryResponse mapToCategoryResponse(Category category) {
         return CategoryResponse
                 .builder()
                 .id(category.getId())
