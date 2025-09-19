@@ -1,6 +1,7 @@
 package com.example.productInventoryManagementService.controller;
 
 import com.example.productInventoryManagementService.entity.dto.request.ProductCreateRequest;
+import com.example.productInventoryManagementService.entity.dto.request.ProductUpdateRequest;
 import com.example.productInventoryManagementService.entity.dto.response.ProductResponse;
 import com.example.productInventoryManagementService.service.ProductService;
 import jakarta.validation.Valid;
@@ -24,5 +25,17 @@ public class ProductController {
     @PostMapping("/create")
     ResponseEntity<ProductResponse> createProduct(@Valid @RequestBody ProductCreateRequest request) {
         return ResponseEntity.ok(productService.create(request));
+    }
+
+    @PutMapping("/update/{id}")
+    ResponseEntity<ProductResponse> updateProduct(@PathVariable Long id,
+                                                  @Valid @RequestBody ProductUpdateRequest request) {
+        return ResponseEntity.ok(productService.update(id, request));
+    }
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<String> deleteProduct(@PathVariable Long id) {
+        productService.delete(id);
+        return ResponseEntity.ok("Delete Successfully");
     }
 }
